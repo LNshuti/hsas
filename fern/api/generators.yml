@@ -1,0 +1,15 @@
+api: 
+  path: ./path/to/openapi.yml
+groups:
+  python-sdk:
+    generators:
+      - name: fernapi/fern-python-sdk
+        version: 3.0.0
+        output:
+          location: pypi
+          package-name: imdb
+          token: ${PYPI_TOKEN}
+        github:
+          repository: imdb/imdb-python
+        config:
+          client_class_name: imdb

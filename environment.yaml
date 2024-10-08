@@ -1,0 +1,9 @@
+name: knowledge-table
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+    - pandas 
+    - fastapi
