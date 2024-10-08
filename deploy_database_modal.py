@@ -8,8 +8,8 @@
 # ![Datasette user interface](./covid_datasette_ui.png)
 #
 # This example shows how to serve a Datasette application on Modal. The published dataset
-# is COVID-19 case data from Johns Hopkins University which is refreshed daily.
-# Try it out for yourself at [here](https://modal-labs--example-covid-datasette-ui.modal.run).
+# is hsas case data from Johns Hopkins University which is refreshed daily.
+# Try it out for yourself at [here](https://modal-labs--hsas-datasette-ui.modal.run).
 #
 # Some Modal features it uses:
 # * Volumes: a persisted volume lets us store and grow the published dataset over time.
@@ -31,7 +31,7 @@ from urllib.request import urlretrieve
 
 import modal
 
-app = modal.App("example-covid-datasette")
+app = modal.App("hsas-datasette")
 datasette_image = (
     modal.Image.debian_slim()
     .pip_install("datasette~=0.63.2", "sqlite-utils")
@@ -44,16 +44,16 @@ datasette_image = (
 # database file to be stored persistently. To achieve this we use a [`Volume`](/docs/guide/volumes).
 
 volume = modal.Volume.from_name(
-    "example-covid-datasette-cache-vol", create_if_missing=True
+    "hsas-datasette-cache-vol", create_if_missing=True
 )
 
 VOLUME_DIR = "/cache-vol"
-REPORTS_DIR = pathlib.Path(VOLUME_DIR, "COVID-19")
-DB_PATH = pathlib.Path(VOLUME_DIR, "covid-19.db")
+REPORTS_DIR = pathlib.Path(VOLUME_DIR, "hsas")
+DB_PATH = pathlib.Path(VOLUME_DIR, "backend/databases/hsas.db")
 
 # ## Getting a dataset
 #
-# Johns Hopkins has been publishing up-to-date COVID-19 pandemic data on GitHub since early February 2020, and
+# Johns Hopkins has been publishing up-to-date hsas pandemic data on GitHub since early February 2020, and
 # as of late September 2022 daily reporting is still rolling in. Their dataset is what this example will use to
 # show off Modal and Datasette's capabilities.
 #
@@ -75,14 +75,14 @@ def download_dataset(cache=True):
 
     print("Downloading dataset...")
     urlretrieve(
-        "https://github.com/CSSEGISandData/COVID-19/archive/refs/heads/master.zip",
-        "/tmp/covid-19.zip",
+        "https://github.com/CSSEGISandData/hsas/archive/refs/heads/master.zip",
+        "/tmp/hsas.zip",
     )
 
     print("Unpacking archive...")
-    prefix = "COVID-19-master/csse_covid_19_data/csse_covid_19_daily_reports"
+    prefix = "hsas-master/csse_covid_19_data/csse_covid_19_daily_reports"
     subprocess.run(
-        f"unzip /tmp/covid-19.zip {prefix}/* -d {REPORTS_DIR}", shell=True
+        f"unzip /tmp/hsas.zip {prefix}/* -d {REPORTS_DIR}", shell=True
     )
     subprocess.run(f"mv {REPORTS_DIR / prefix}/* {REPORTS_DIR}", shell=True)
 
@@ -146,7 +146,7 @@ def load_report(filepath):
 #
 # With the CSV processing out of the way, we're ready to create an SQLite DB and feed data into it.
 # Importantly, the `prep_db` function mounts the same volume used by `download_dataset()`, and
-# rows are batch inserted with progress logged after each batch, as the full COVID-19 has millions
+# rows are batch inserted with progress logged after each batch, as the full hsas has millions
 # of rows and does take some time to be fully inserted.
 #
 # A more sophisticated implementation would only load new data instead of performing a full refresh,
@@ -240,10 +240,10 @@ def ui():
 
 @app.local_entrypoint()
 def run():
-    print("Downloading COVID-19 dataset...")
+    print("Downloading hsas dataset...")
     download_dataset.remote()
     print("Prepping SQLite DB...")
     prep_db.remote()
 
 
-# You can explore the data at the [deployed web endpoint](https://modal-labs--example-covid-datasette-app.modal.run/covid-19).
+# You can explore the data at the [deployed web endpoint](https://modal-labs--hsas-datasette-app.modal.run/hsas).
