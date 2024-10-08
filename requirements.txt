@@ -1,0 +1,11 @@
+gradio
+pandas
+plotly
+folium
+scikit-learn
+geopandas
+pyarrow
+scipy
+geopy
+openrouteservice
+logfire
