@@ -113,13 +113,6 @@ Web application with five primary subpages: **Home, Login, Blog, About, and Pric
 - Implement CAPTCHA or similar anti-bot measures on the login page.
 - Store user passwords securely (hash and salt using bcrypt or similar).
 
-#### 5.3. Accessibility
-- The site should meet **WCAG 2.1 Level AA** standards for accessibility.
-
-#### 5.4. Compatibility
-- The application must be compatible with the latest versions of major browsers (Chrome, Firefox, Safari, Edge).
-- Ensure compatibility with different screen sizes and orientations.
-
 ### 6. Wireframes and Visual Design
 
 Provide wireframes for each page (Login, Home, Blog, About, Pricing) to visualize the layout and design expectations. These wireframes should include:
@@ -128,14 +121,3 @@ Provide wireframes for each page (Login, Home, Blog, About, Pricing) to visualiz
 - Content sections for each page.
 - Login page design with Google Sign-In and traditional form.
 
-### 7. Timeline and Milestones
-
-- **Week 1**: Design phase—complete wireframes and final visual design.
-- **Week 2**: Development of Home, Blog, and About pages.
-- **Week 3**: Development of Pricing and Login pages, Google OAuth integration.
-- **Week 4**: Testing, bug fixes, and deployment.
-
-### 8. Risks and Mitigation
-
-- **Google OAuth Integration Delays**: Ensure that API credentials and setup are completed early in development.
-- **Login Security Issues**: Prioritize security testing (e.g., SQL injection, brute-force attacks) to mitigate vulnerabilities.
