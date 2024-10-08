@@ -1,4 +1,4 @@
-name: knowledge-table
+name: hsas
 channels:
   - conda-forge
 dependencies:
@@ -7,3 +7,6 @@ dependencies:
   - pip:
     - pandas 
     - fastapi
+    - datasette
+    - duckdb
+    - numpy
