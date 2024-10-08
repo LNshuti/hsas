@@ -12,7 +12,7 @@
 **Date**: [Date]
 
 ### 1. Overview
-This document defines the requirements for a web application with five primary subpages: Home, Login, Blog, About, and Pricing. The application will allow users to sign in using their Google account or traditional email and password credentials. Additionally, users will have access to other features like browsing blogs, learning more about the company on the About page, and exploring pricing options.
+Web application with five primary subpages: **Home, Login, Blog, About, and Pricing**. The application allows to sign in using their Google account or traditional email and password credentials. Additionally, users can view blogs, learning more about the company on the About page, and exploring pricing options.
 
 ### 2. Objectives
 - To provide a simple, intuitive user interface for navigation between multiple pages.
