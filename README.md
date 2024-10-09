@@ -7,10 +7,6 @@
 
 **Version**: 1.0
 
-**Author**: [Your Name]
-
-**Date**: [Date]
-
 ### 1. Overview
 Web application with five primary subpages: **Home, Login, Blog, About, and Pricing**. The application allows to sign in using their Google account or traditional email and password credentials. Additionally, users can view blogs, learning more about the company on the About page, and exploring pricing options.
 
