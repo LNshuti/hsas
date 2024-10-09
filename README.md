@@ -87,27 +87,20 @@ Web application with five primary subpages: **Home, Login, Blog, About, and Pric
   - **Traditional Login**: Secure login with email/username and password.
   - **SSO**: Single Sign-On integration for enterprise users.
   
-#### 4.2. Login Page Features
+#### 4.2. Login Page Features And API Integrations
 - **Password Management**: Integration of "Forgot Password" functionality using an email recovery link.
 - **Password Visibility**: Toggle option for hiding/showing password.
 - **Error Handling**: Display appropriate error messages for incorrect credentials or connection issues.
 - **Security**: All forms must be secure (e.g., SSL, secure password storage with encryption).
-
-#### 4.3. API Integrations
 - **User Authentication**: Integrate with Google OAuth 2.0 API.
 - **Blog API**: Fetch blog post content from a backend API or Content Management System (CMS).
 - **Pricing Data**: Dynamically retrieve and display pricing data, potentially from a CMS or database.
 
 ### 5. Non-Functional Requirements
 
-#### 5.1. Performance
 - The site must load within 2 seconds on average.
 - The login authentication process should take less than 1 second for both Google OAuth and traditional logins.
 
-#### 5.2. Security
-- Use HTTPS and SSL for all communications.
-- Implement CAPTCHA or similar anti-bot measures on the login page.
-- Store user passwords securely (hash and salt using bcrypt or similar).
 
 ### 6. Wireframes and Visual Design
 
