@@ -155,7 +155,7 @@ def plot_population_comparison():
                  barmode='group', 
                  title="Tennessee Population Comparison: 2010 vs 2020", 
                  labels={'County': 'County', 'Population': 'Population'},
-                 color_discrete_map={'Population_2010': 'purple', 'Population_2020': 'blue'})
+                 color_discrete_map={'Population_2010': 'lightgreen', 'Population_2020': 'lightblue'})
     
     fig.update_layout(xaxis={'categoryorder': 'total descending'}, template='plotly_white')
     return fig
