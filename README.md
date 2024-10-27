@@ -10,6 +10,25 @@
 ### 1. Overview
 Web application with five primary subpages: **Home, Login, Blog, About, and Pricing**. The application allows to sign in using their Google account or traditional email and password credentials. Additionally, users can view blogs, learning more about the company on the About page, and exploring pricing options.
 
+#### MLFLOW Deployment structure
+mlflow/
+├── recipe.yaml
+├── requirements.txt
+├── steps
+│   ├── ingest.py
+│   ├── split.py
+│   ├── transform.py
+│   ├── train.py
+│   ├── custom_metrics.py
+├── profiles
+│   ├── local.yaml
+│   ├── databricks.yaml
+├── tests
+│   ├── ingest_test.py
+│   ├── ...
+│   ├── train_test.py
+│   ├── ...
+
 ### 2. Objectives
 - To provide a simple, intuitive user interface for navigation between multiple pages.
 - To allow users to sign in using their Google account or standard login credentials.
