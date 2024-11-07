@@ -1,8 +1,8 @@
 import sqlite3
 import pandas as pd
 
-CSV_FILE_PATH = 'backend/data/Hospital_Service_Area_2022.csv'
-DB_FILE_PATH = 'backend/databases/hsas.db'
+CSV_FILE_PATH = 'data/Hospital_Service_Area_2022.csv'
+DB_FILE_PATH = 'databases/hsas.db'
 TABLE_NAME = 'hsa_data'
 
 def load_csv_to_sqlite(csv_file_path, db_file_path, table_name):
@@ -10,7 +10,7 @@ def load_csv_to_sqlite(csv_file_path, db_file_path, table_name):
     try:
         # Load CSV into DataFrame
         df = pd.read_csv(csv_file_path)
-        
+        print(df)
         # Clean column names
         df.columns = df.columns.str.lower().str.replace(' ', '_').str.replace('.', '_').str.replace('/', '_').str.replace('-', '_').str.replace('#', '').str.replace('$', '')
         
