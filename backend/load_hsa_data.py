@@ -1,113 +1,80 @@
-import os
-import sqlite3
+# Step-by-Step Plan:
+# 1. Import necessary libraries.
+# 2. Connect to the SQLite database and load the 'hsa_data' table into a pandas DataFrame.
+# 3. Define and perform hypothesis tests:
+#    a. Correlation between total_days_of_care and total_charges.
+#    b. Difference in total_charges between different zip codes of residence.
+#    c. Association between number of total_cases and total_days_of_care.
+
+# Step 1: Import Libraries
 import pandas as pd
+import sqlite3
+from scipy import stats
+import seaborn as sns
+import matplotlib.pyplot as plt
 
-CSV_FILE_PATH = 'data/Hospital_Service_Area_2022.csv'
-DB_FILE_PATH = 'databases/hsas.db'
-TABLE_NAME = 'hsa_data'
-PARQUET_FILE_PATH = 'data/processed/hsas.parquet'
+# Step 2: Load Data from SQLite
+conn = sqlite3.connect('databases/hsas.db')
+df = pd.read_sql_query("SELECT * FROM hsa_data", conn)
+conn.close()
 
-def load_csv_to_sqlite_and_save_parquet(csv_file_path, db_file_path, table_name, parquet_file_path):
-    """Loads a CSV file into a SQLite database, summarizes the data, handles missing values, and saves it as a Parquet file."""
-    try:
-        # Load CSV into DataFrame
-        df = pd.read_csv(csv_file_path)
-        print("Original DataFrame loaded:")
-        print(df.head())
+# Display first few rows
+print(df.head())
 
-        print("\nDataFrame Info:")
-        print(df.info())
+# Step 3a: Correlation between total_days_of_care and total_charges
+# Hypothesis:
+# H0: There is no correlation between total_days_of_care and total_charges.
+# H1: There is a significant correlation between total_days_of_care and total_charges.
 
-        print("\nDataFrame Description:")
-        print(df.describe(include='all'))
+corr, p_value = stats.pearsonr(df['total_days_of_care'], df['total_charges'])
+print(f"Pearson Correlation: {corr}, P-value: {p_value}")
 
-        print("\nMissing Values in Each Column:")
-        print(df.isnull().sum())
+if p_value < 0.05:
+    print("Reject the null hypothesis. There is a significant correlation.")
+else:
+    print("Fail to reject the null hypothesis. No significant correlation found.")
 
-        # Handle Specific Missing Value Representations
-        # Columns where '*' should be replaced with 0
-        columns_replace_star = ['TOTAL_DAYS_OF_CARE', 'TOTAL_CHARGES', 'TOTAL_CASES']
-        
-        for column in columns_replace_star:
-            if column in df.columns:
-                # Replace '*' with 0
-                num_replacements = df[column].replace('*', 0).count() - df[column].replace('*', 0).count()
-                df[column] = df[column].replace('*', 0)
-                print(f"\nReplaced '*' with 0 in column '{column}'.")
-                
-                # Convert column to numeric (if not already)
-                df[column] = pd.to_numeric(df[column], errors='coerce')
-                print(f"Converted column '{column}' to numeric type.")
-            else:
-                print(f"\nWarning: Column '{column}' not found in DataFrame.")
+# Step 3b: Difference in total_charges between different zip codes of residence
+# Hypothesis:
+# H0: There is no difference in total_charges across different zip codes.
+# H1: There is a significant difference in total_charges across different zip codes.
 
-        # Handle Missing Values
-        # Strategy: Remove columns with all missing values and impute or remove rows with missing values in remaining columns
-        # Step 1: Drop columns where all values are NaN
-        initial_columns = df.shape[1]
-        df.dropna(axis=1, how='all', inplace=True)
-        dropped_columns = initial_columns - df.shape[1]
-        if dropped_columns > 0:
-            print(f"\nDropped {dropped_columns} columns with all missing values.")
+# Select top 2 most frequent zip codes for comparison
+top_zip_codes = df['zip_cd_of_residence'].value_counts().nlargest(2).index.tolist()
+df_top = df[df['zip_cd_of_residence'].isin(top_zip_codes)]
 
-        # Step 2: Identify remaining columns with missing values
-        missing_values = df.isnull().sum()
-        columns_with_missing = missing_values[missing_values > 0].index.tolist()
-        
-        if columns_with_missing:
-            print(f"\nColumns with missing values: {columns_with_missing}")
-            # Define columns that were processed to replace '*' with 0
-            for column in columns_with_missing:
-                if column in columns_replace_star:
-                    # These columns have already had '*' replaced with 0 and converted to numeric
-                    # Now, handle any remaining missing values by imputing with 0
-                    df[column].fillna(0, inplace=True)
-                    print(f"Imputed remaining missing values in column '{column}' with 0.")
-                elif df[column].dtype in ['float64', 'int64']:
-                    median_value = df[column].median()
-                    df[column].fillna(median_value, inplace=True)
-                    print(f"Imputed missing values in numerical column '{column}' with median: {median_value}.")
-                else:
-                    mode_value = df[column].mode()[0]
-                    df[column].fillna(mode_value, inplace=True)
-                    print(f"Imputed missing values in categorical column '{column}' with mode: {mode_value}.")
-        else:
-            print("\nNo missing values detected.")
+charges_zip1 = df_top[df_top['zip_cd_of_residence'] == top_zip_codes[0]]['total_charges']
+charges_zip2 = df_top[df_top['zip_cd_of_residence'] == top_zip_codes[1]]['total_charges']
 
-        print("\nDataFrame after handling missing values:")
-        print(df.head())
+t_stat, p_val = stats.ttest_ind(charges_zip1, charges_zip2, equal_var=False)
+print(f"T-test Statistic: {t_stat}, P-value: {p_val}")
 
-        print("\nSummary after handling missing values:")
-        print(df.info())
-        print(df.describe(include='all'))
+if p_val < 0.05:
+    print("Reject the null hypothesis. Significant difference found.")
+else:
+    print("Fail to reject the null hypothesis. No significant difference found.")
 
-        # Clean column names
-        df.columns = (
-            df.columns
-            .str.lower()
-            .str.replace(' ', '_', regex=False)
-            .str.replace('.', '_', regex=False)
-            .str.replace('/', '_', regex=False)
-            .str.replace('-', '_', regex=False)
-            .str.replace('#', '', regex=False)
-            .str.replace('$', '', regex=False)
-        )
-        print("\nDataFrame with cleaned column names:")
-        print(df.head())
+# Step 3c: Association between number of total_cases and total_days_of_care
+# Hypothesis:
+# H0: There is no association between total_cases and total_days_of_care.
+# H1: There is an association between total_cases and total_days_of_care.
 
-        # Create SQLite database and insert data
-        os.makedirs(os.path.dirname(db_file_path), exist_ok=True)
-        with sqlite3.connect(db_file_path) as conn:
-            df.to_sql(table_name, conn, if_exists='replace', index=False)
-        print(f"\nData successfully loaded into {db_file_path} in table '{table_name}'.")
+contingency_table = pd.crosstab(df['total_cases'], df['total_days_of_care'])
+chi2, p, dof, ex = stats.chi2_contingency(contingency_table)
+print(f"Chi-squared Statistic: {chi2}, P-value: {p}")
 
-        # Save DataFrame as Parquet file
-        os.makedirs(os.path.dirname(parquet_file_path), exist_ok=True)
-        df.to_parquet(parquet_file_path, index=False)
-        print(f"Data successfully saved as Parquet file at {parquet_file_path}.")
+if p < 0.05:
+    print("Reject the null hypothesis. There is an association.")
+else:
+    print("Fail to reject the null hypothesis. No association found.")
 
-    except Exception as e:
-        print(f"Error loading CSV file into SQLite and saving as Parquet: {e}")
+# Optional: Visualizations
+# Scatter plot for correlation
+sns.scatterplot(x='total_days_of_care', y='total_charges', data=df)
+plt.title('Total Days of Care vs Total Charges')
+plt.show()
 
-# Load CSV into SQLite and save as Parquet
-load_csv_to_sqlite_and_save_parquet(CSV_FILE_PATH, DB_FILE_PATH, TABLE_NAME, PARQUET_FILE_PATH)
+# Box plot for difference in charges between zip codes
+sns.boxplot(x='zip_cd_of_residence', y='total_charges', data=df_top)
+plt.title('Total Charges by Zip Code')
+plt.show()
