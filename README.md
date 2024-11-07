@@ -21,10 +21,13 @@ Web application with five primary subpages: **Home, Login, Blog, About, and Pric
  - train.py
  - custom_metrics.py
  - profiles
+   
     -local.yaml
+   
  - tests
     - ingest_test.py
-    t- rain_test.py
+      
+    - train_test.py
 
 ### 2. Objectives
 - To provide a simple, intuitive user interface for navigation between multiple pages.
