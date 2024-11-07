@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/leoncenshuti/Desktop/portfolio/hsas/mlflow/mlartifacts/mlruns/0/4e2279311f5540358bcb37f14dce1bfe/artifacts
+end_time: 1730002343429
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4e2279311f5540358bcb37f14dce1bfe
+run_name: resilient-rook-307
+run_uuid: 4e2279311f5540358bcb37f14dce1bfe
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1730002343415
+status: 4
+tags: []
+user_id: leoncenshuti
