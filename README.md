@@ -20,10 +20,6 @@ Web application with five primary subpages: **Home, Login, Blog, About, and Pric
  - transform.py
  - train.py
  - custom_metrics.py
- - profiles
-   
-    -local.yaml
-   
  - tests
     - ingest_test.py
       
