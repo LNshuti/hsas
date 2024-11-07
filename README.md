@@ -97,8 +97,6 @@ Web application with five primary subpages: **Home, Login, Blog, About, and Pric
 
 
 ### 6. Wireframes and Visual Design
-
-Provide wireframes for each page (Login, Home, Blog, About, Pricing) to visualize the layout and design expectations. These wireframes should include:
 - Navigation bar placement.
 - Call-to-action buttons.
 - Content sections for each page.
