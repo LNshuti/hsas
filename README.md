@@ -53,7 +53,7 @@ Allows users to securely sign in with their credentials or through a third-party
   - Call-to-action buttons for sign-up or contacting sales for custom pricing.
   - As a visitor, I want to compare pricing plans to choose the one that best suits my needs.
 
-### 4. Functional Requirements
+### Functional Requirements
 - **Navigation**: A top navigation bar will be consistent across all pages, allowing users to move between Home, Login, Blog, About, and Pricing.
 - **Responsive Design**: The site must be fully responsive and accessible across different device types (desktops, tablets, mobile).
 - **Authentication**:
