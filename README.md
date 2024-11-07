@@ -8,25 +8,11 @@
 **Version**: 1.0
 
 ### 1. Overview
-Web application with five primary subpages: **Home, Login, Blog, About, and Pricing**. The application allows to sign in using their Google account or traditional email and password credentials. Additionally, users can view blogs, learning more about the company on the About page, and exploring pricing options.
+**Healthcare AI data Analyst agent**. Uses gradio to prototype in Python. The agent analyzes U.S. prescription data from the Center of Medicare and Medicaid(CMS) to replicate papers from academic journals and articles from Kaiser Health News on U.S. prescription drug prices.
 
-#### MLFLOW Deployment structure
-- mlflow/
- - recipe.yaml
- - requirements.txt
- - steps
- - ingest.py
- - split.py
- - transform.py
- - train.py
- - custom_metrics.py
- - tests
-    - ingest_test.py
-      
-    - train_test.py
+Web application with five primary subpages: **Home, Login, Blog, About, and Pricing**. The application allows to sign in using their Google account or traditional email and password credentials.
 
 ### 2. Objectives
-- To provide a simple, intuitive user interface for navigation between multiple pages.
 - To allow users to sign in using their Google account or standard login credentials.
 - To inform visitors about the application through a blog, about section, and pricing page.
 - To ensure the application is responsive, scalable, and secure.
@@ -34,15 +20,14 @@ Web application with five primary subpages: **Home, Login, Blog, About, and Pric
 ### 3. Pages Description and Requirements
 
 #### 3.1. Home Page
-- **Purpose**: Acts as the landing page for the website, offering users a snapshot of the site’s purpose and content.
+- **Purpose**: Acts as the landing page to tell users the site’s purpose and content.
 - **Key Features**:
-  - Clean, simple design with a prominent call to action.
+  - Clean, simple design with a prominent call to action(CTA).
   - A navigation bar allowing access to other subpages: Login, Blog, About, Pricing.
   - Footer with links to Terms of Service, Privacy Policy, and Contact Information.
   
 - **User Stories**:
   - As a visitor, I want to understand the purpose of the website immediately upon landing.
-  - As a visitor, I want clear navigation to explore other parts of the website.
 
 #### 3.2. Login Page
 - **Purpose**: Allows users to securely sign in with their credentials or through a third-party Google service.
@@ -61,28 +46,23 @@ Web application with five primary subpages: **Home, Login, Blog, About, and Pric
   - As a user, I want to reset my password if I have forgotten it.
 
 #### 3.3. Blog Page
-- **Purpose**: Hosts articles, announcements, and other informative content related to the company or product.
 - **Key Features**:
   - Blog posts displayed in reverse chronological order.
   - Pagination or infinite scroll to navigate through older posts.
   - A search bar to filter posts by keywords or topics.
   
 - **User Stories**:
-  - As a visitor, I want to browse blog articles to learn more about industry insights or product updates.
   - As a visitor, I want to search blog posts based on specific keywords.
 
 #### 3.4. About Page
-- **Purpose**: Provides information about the company, mission, team, and history.
 - **Key Features**:
   - Content sections for the company mission, history, and team member profiles.
   - Images or media to complement the company’s story.
   
 - **User Stories**:
-  - As a visitor, I want to learn about the company’s mission and values.
   - As a visitor, I want to see profiles of the team members.
 
 #### 3.5. Pricing Page
-- **Purpose**: Displays pricing plans and details for users interested in purchasing services.
 - **Key Features**:
   - Clear breakdown of different pricing tiers (e.g., Basic, Pro, Enterprise).
   - Feature comparison chart for each pricing tier.
@@ -90,7 +70,6 @@ Web application with five primary subpages: **Home, Login, Blog, About, and Pric
   
 - **User Stories**:
   - As a visitor, I want to compare pricing plans to choose the one that best suits my needs.
-  - As a visitor, I want to contact sales for more information on custom pricing.
 
 ### 4. Functional Requirements
 
