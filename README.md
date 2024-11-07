@@ -7,7 +7,7 @@
 
 **Version**: 1.0
 ### 1. Overview
-**Healthcare AI data Analyst agent**. Uses gradio to prototype in Python. The agent analyzes U.S. prescription data from the Center of Medicare and Medicaid(CMS) to replicate papers from academic journals and articles from Kaiser Health News on U.S. prescription drug prices.
+**HSA is a Healthcare AI data Analyst agent**. Uses gradio to prototype in Python. The agent analyzes U.S. prescription data from the Center of Medicare and Medicaid(CMS) to replicate papers from academic journals and articles from Kaiser Health News on U.S. prescription drug prices.
 
 Web application with five primary subpages: **Home, Login, Blog, About, and Pricing**. The application allows to sign in using their Google account or traditional email and password credentials.
 
@@ -18,7 +18,7 @@ Web application with five primary subpages: **Home, Login, Blog, About, and Pric
 
 ### 3. Pages Description and Requirements
 #### 3.1. Home Page
-- **Purpose**: Acts as the landing page to tell users the site’s purpose and content.
+Acts as the landing page to tell users the site’s purpose and content.
 - **Key Features**:
   - Clean, simple design with a prominent call to action(CTA).
   - A navigation bar allowing access to other subpages: Login, Blog, About, Pricing.
@@ -26,7 +26,7 @@ Web application with five primary subpages: **Home, Login, Blog, About, and Pric
   - As a visitor, I want to understand the purpose of the website immediately upon landing.
 
 #### 3.2. Login Page
-- **Purpose**: Allows users to securely sign in with their credentials or through a third-party Google service.
+Allows users to securely sign in with their credentials or through a third-party Google service.
 - **Key Features**:
   - **Google Sign-In Button**: Positioned at the top for easy access, allowing users to sign in using their Google account.
   - **Email/Password Form**: Traditional sign-in form with input fields for "Email or Username" and "Password".
@@ -40,20 +40,17 @@ Web application with five primary subpages: **Home, Login, Blog, About, and Pric
   - As a user, I want to reset my password if I have forgotten it.
 
 #### 3.3. Blog Page
-- **Key Features**:
   - Blog posts displayed in reverse chronological order.
   - Pagination or infinite scroll to navigate through older posts.
   - A search bar to filter posts by keywords or topics.
   - As a visitor, I want to search blog posts based on specific keywords.
 
 #### 3.4. About Page
-- **Key Features**:
   - Content sections for the company mission, history, and team member profiles.
   - Images or media to complement the company’s story.
   - As a visitor, I want to see profiles of the team members.
 
 #### 3.5. Pricing Page
-- **Key Features**:
   - Clear breakdown of different pricing tiers (e.g., Basic, Pro, Enterprise).
   - Feature comparison chart for each pricing tier.
   - Call-to-action buttons for sign-up or contacting sales for custom pricing.
@@ -79,10 +76,10 @@ Web application with five primary subpages: **Home, Login, Blog, About, and Pric
 
 ### 5. Non-Functional Requirements
 - The site must load within 2 seconds on average.
-- The login authentication process should take less than 1 second for both Google OAuth and traditional logins.
+- The login authentication process should take less than 1 second.
 
 ### 6. Wireframes and Visual Design
 - Navigation bar placement.
 - Call-to-action buttons.
 - Content sections for each page.
-- Login page design with Google Sign-In and traditional form.
+- Login page design with Google Sign-In.
