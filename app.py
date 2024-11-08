@@ -46,7 +46,7 @@ def parse_query(nl_query):
     ]
 
     try:
-        response = openai.ChatCompletion.create(
+        response = openai.chat.completions.create(
             model="gpt-4",
             messages=messages,
             temperature=0,

@@ -9,3 +9,4 @@ scipy
 geopy
 openrouteservice
 logfire
+datasette
