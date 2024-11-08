@@ -11,14 +11,12 @@ Web application with five primary subpages: **Home, Login, Blog, About, and Pric
 
 ### Pages Description and Requirements
 #### Home Page
-Acts as the landing page to tell users the site’s purpose and content.
   - Clean, simple design with a prominent call to action(CTA).
   - A navigation bar allowing access to other subpages: Login, Blog, About, Pricing.
   - Footer with links to Terms of Service, Privacy Policy, and Contact Information.
   - As a visitor, I want to understand the purpose of the website immediately upon landing.
 
 #### Login Page
-Allows users to securely sign in with their credentials or through a third-party Google service.
   - **Google Sign-In Button**: Positioned at the top for easy access, allowing users to sign in using their Google account.
   - **Email/Password Form**: Traditional sign-in form with input fields for "Email or Username" and "Password".
     - Password visibility toggle (eye icon) to show/hide password input.
