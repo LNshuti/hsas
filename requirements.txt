@@ -1,4 +1,6 @@
 gradio
+openai
+duckdb
 pandas
 plotly
 folium
