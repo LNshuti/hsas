@@ -2,10 +2,7 @@
 
 [HSAs](https://lnshuti--hsas-datasette-ui.modal.run)
 
-# Documentation
-[Docs](https://healthcare-services-areas-obga1oo27-lnshutis-projects.vercel.app)
 
-**Version**: 1.0
 **HSA is a Healthcare AI data Analyst agent**. Uses gradio to prototype in Python. The agent analyzes U.S. prescription data from the Center of Medicare and Medicaid(CMS) to replicate papers from academic journals and articles from Kaiser Health News on U.S. prescription drug prices.
 
 Web application with five primary subpages: **Home, Login, Blog, About, and Pricing**. The application allows to sign in using their Google account or traditional email and password credentials.
