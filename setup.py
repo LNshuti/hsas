@@ -10,6 +10,7 @@ setup(
         'duckdb',
         'gradio',
         'pandas',
+        'datasette',
         'numpy',
         # Add other dependencies as needed
     ],
