@@ -18,6 +18,9 @@ setup(
         'test': [
             'pytest',
             'coverage',
+            'pytest-asyncio',
+            'pytest-httpx',
+            'pytest-anyio',
             # Add other test dependencies
         ],
     },
