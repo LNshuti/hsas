@@ -1,6 +1,6 @@
 # **2022 U.S. Hospital Services Areas(HSAs)**: Web Application with Multi-Page Navigation
 
-**[HSAs](https://lnshuti--hsas-datasette-ui.modal.run) is a Healthcare AI data Analyst agent**. Uses gradio to prototype in Python. The agent analyzes U.S. prescription data from the Center of Medicare and Medicaid(CMS) to replicate papers from academic journals and articles from Kaiser Health News on U.S. prescription drug prices.
+**[HSAs](https://leoncensh-baho.hf.space) is a Healthcare AI data Analyst agent**. Uses gradio to prototype in Python. The agent analyzes U.S. prescription data from the Center of Medicare and Medicaid(CMS) to replicate papers from academic journals and articles from Kaiser Health News on U.S. prescription drug prices.
 
 Web application with five primary subpages: **Home, Login, Blog, About, and Pricing**. The application allows to sign in using their Google account or traditional email and password credentials.
 
